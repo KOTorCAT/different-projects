@@ -4,28 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHREK — The Ogre | Luxury Edition</title>
+    <title>SHREK — OGRE. LEGEND. ICON.</title>
     <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+    <style>
+        /* Стили для мини-чата на главной */
+        .chat-preview {
+            max-width: 600px;
+            margin: 60px auto 0;
+            background: rgba(10,10,10,0.8);
+            border: 0.5px solid rgba(245,245,240,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        
+        .chat-preview-header {
+            padding: 20px 25px;
+            border-bottom: 0.5px solid rgba(245,245,240,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-preview-header h3 {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+        
+        .chat-preview-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .chat-preview-message {
+            margin-bottom: 20px;
+        }
+        
+        .chat-preview-message.user {
+            text-align: right;
+        }
+        
+        .chat-preview-content {
+            display: inline-block;
+            max-width: 80%;
+            padding: 10px 18px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .chat-preview-message.user .chat-preview-content {
+            background: rgba(245,245,240,0.1);
+            border: 0.5px solid rgba(245,245,240,0.2);
+        }
+        
+        .chat-preview-message.assistant .chat-preview-content {
+            background: rgba(245,245,240,0.05);
+            border: 0.5px solid rgba(245,245,240,0.1);
+        }
+        
+        .chat-preview-input-area {
+            display: flex;
+            gap: 10px;
+            padding: 20px;
+            border-top: 0.5px solid rgba(245,245,240,0.1);
+        }
+        
+        .chat-preview-input {
+            flex: 1;
+            background: transparent;
+            border: 0.5px solid rgba(245,245,240,0.2);
+            padding: 12px 18px;
+            color: #f5f5f0;
+            font-family: inherit;
+            font-size: 0.85rem;
+            border-radius: 25px;
+        }
+        
+        .chat-preview-input:focus {
+            outline: none;
+            border-color: rgba(245,245,240,0.6);
+        }
+        
+        .chat-preview-send {
+            padding: 12px 25px;
+            background: transparent;
+            border: 0.5px solid rgba(245,245,240,0.3);
+            color: #f5f5f0;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+        
+        .chat-preview-send:hover:not(:disabled) {
+            border-color: rgba(245,245,240,0.8);
+            background: rgba(245,245,240,0.05);
+        }
+        
+        .chat-preview-send:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .full-chat-link {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            background: rgba(245,245,240,0.03);
+            border-top: 0.5px solid rgba(245,245,240,0.1);
+            text-decoration: none;
+            color: rgba(245,245,240,0.6);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .full-chat-link:hover {
+            background: rgba(245,245,240,0.08);
+            color: rgba(245,245,240,0.9);
+        }
+        
+        .typing-preview span {
+            animation: blinkPreview 1.4s infinite;
+        }
+        
+        @keyframes blinkPreview {
+            0%, 60%, 100% { opacity: 0; }
+            30% { opacity: 1; }
+        }
+        
+        ::-webkit-scrollbar {
+            width: 2px;
+        }
+    </style>
 </head>
 <body>
     <div class="nav">
         <a href="/" class="logo">SHREK</a>
         <div class="nav-links">
-            <a href="/">ACCUEIL</a>
-            <a href="/about/">L'HISTOIRE</a>
+            <a href="/">ГЛАВНАЯ</a>
+            <a href="/about/">О ШРЕКЕ</a>
         </div>
     </div>
 
     <div class="container">
         <div class="hero">
-            <h1 class="fade-in">Shrek</h1>
-            <p class="fade-in delay-1">An Ogre's Tale — Beyond the Swamp</p>
+            <h1>Шрек</h1>
+            <p>ОГР. ЛЕГЕНДА. ИКОНА.</p>
         </div>
 
-        <div class="quote-section">
-            <div class="quote fade-in">
-                What are you doing in my swamp?
-                <div class="quote-author">SHREK · 2001</div>
+        <div class="section">
+            <div class="section-content">
+                <div class="quote">
+                    Что ты делаешь в моем болоте?
+                    <div class="quote-author">ШРЕК · 2001</div>
+                </div>
             </div>
         </div>
 
@@ -33,21 +168,53 @@
             <div class="section-content">
                 <div class="characters-grid">
                     <div class="character-item">
-                        <div class="character-name">Shrek</div>
-                        <div class="character-desc">The Ogre · The Protector</div>
+                        <div class="character-name">Шрек</div>
+                        <div class="character-desc">ОГР · ЗАЩИТНИК</div>
                     </div>
                     <div class="character-item">
-                        <div class="character-name">Donkey</div>
-                        <div class="character-desc">The Companion · The Loyal</div>
+                        <div class="character-name">Осел</div>
+                        <div class="character-desc">СПУТНИК · ВЕРНЫЙ ДРУГ</div>
                     </div>
                     <div class="character-item">
-                        <div class="character-name">Fiona</div>
-                        <div class="character-desc">The Princess · The Warrior</div>
+                        <div class="character-name">Фиона</div>
+                        <div class="character-desc">ПРИНЦЕССА · ВОИТЕЛЬНИЦА</div>
                     </div>
                     <div class="character-item">
-                        <div class="character-name">Dragon</div>
-                        <div class="character-desc">The Guardian · The Power</div>
+                        <div class="character-name">Дракон</div>
+                        <div class="character-desc">СТРАЖ · СИЛА</div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Мини-чат на главной -->
+        <div class="section">
+            <div class="section-content">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="font-size: 1.5rem;">ПОГОВОРИ СО ШРЕКОМ</h2>
+                    <p style="color: rgba(245,245,240,0.5); font-size: 0.8rem;">ЗАЙДИ В БОЛОТО · ЗАДАЙ ВОПРОС ОГРУ</p>
+                </div>
+                
+                <div class="chat-preview">
+                    <div class="chat-preview-header">
+                        <h3>ШРЕК · ОГР</h3>
+                        <span style="font-size: 0.7rem; opacity: 0.5;">● В БОЛОТЕ</span>
+                    </div>
+                    
+                    <div class="chat-preview-messages" id="previewMessages">
+                        <div class="chat-preview-message assistant">
+                            <div class="chat-preview-content">
+                                Осел, что ты ты забыл на моем болоте?!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-preview-input-area">
+                        <input type="text" class="chat-preview-input" id="previewInput" placeholder="Спроси Шрека..." onkeypress="if(event.key==='Enter') sendPreviewMessage()">
+                        <button class="chat-preview-send" id="previewSendBtn" onclick="sendPreviewMessage()">ОТПРАВИТЬ</button>
+                    </div>
+                    
+                    <a href="/chat/" class="full-chat-link">ОТКРЫТЬ ПОЛНЫЙ ЧАТ →</a>
                 </div>
             </div>
         </div>
@@ -57,15 +224,15 @@
                 <div class="facts-grid">
                     <div class="fact">
                         <div class="fact-number">I</div>
-                        <div class="fact-text">The first animated film to win the Academy Award for Best Animated Feature — 2002</div>
+                        <div class="fact-text">Первый анимационный фильм, получивший Оскар в номинации "Лучший анимационный полнометражный фильм" — 2002</div>
                     </div>
                     <div class="fact">
                         <div class="fact-number">II</div>
-                        <div class="fact-text">Mike Myers explored seven distinct accents before discovering Shrek's iconic voice</div>
+                        <div class="fact-text">Майк Майерс перепробовал семь разных акцентов, прежде чем нашел идеальный голос Шрека</div>
                     </div>
                     <div class="fact">
                         <div class="fact-number">III</div>
-                        <div class="fact-text">A cultural phenomenon that redefined animated storytelling for generations</div>
+                        <div class="fact-text">Культурный феномен, переопределивший анимационное повествование для целых поколений</div>
                     </div>
                 </div>
             </div>
@@ -74,14 +241,85 @@
         <div class="section">
             <div class="section-content">
                 <ul class="links-list">
-                    <li><a href="/item/1/">The Layers <span>→</span></a></li>
-                    <li><a href="/item/2/">The Swamp <span>→</span></a></li>
-                    <li><a href="/item/3/">The Legacy <span>→</span></a></li>
+                    <li><a href="/item/1/">СЛОИ ЛУКОВИЦЫ <span>→</span></a></li>
+                    <li><a href="/item/2/">ТАЙНЫ БОЛОТА <span>→</span></a></li>
+                    <li><a href="/item/3/">НАСЛЕДИЕ ОГРА <span>→</span></a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <script src="{% static 'myapp/js/main.js' %}"></script>
+    <script>
+        const previewMessages = document.getElementById('previewMessages');
+        const previewInput = document.getElementById('previewInput');
+        const previewSendBtn = document.getElementById('previewSendBtn');
+        let isWaitingPreview = false;
+        
+        function addPreviewMessage(role, content) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-preview-message ${role}`;
+            messageDiv.innerHTML = `<div class="chat-preview-content">${escapeHtml(content)}</div>`;
+            previewMessages.appendChild(messageDiv);
+            previewMessages.scrollTop = previewMessages.scrollHeight;
+        }
+        
+        function addTypingPreview() {
+            const div = document.createElement('div');
+            div.className = 'chat-preview-message assistant';
+            div.id = 'typingPreview';
+            div.innerHTML = `<div class="chat-preview-content">Шрек печатает<span class="typing-preview">.</span><span class="typing-preview">.</span><span class="typing-preview">.</span></div>`;
+            previewMessages.appendChild(div);
+            previewMessages.scrollTop = previewMessages.scrollHeight;
+        }
+        
+        function removeTypingPreview() {
+            const typing = document.getElementById('typingPreview');
+            if (typing) typing.remove();
+        }
+        
+        function sendPreviewMessage() {
+            if (isWaitingPreview) return;
+            
+            const message = previewInput.value.trim();
+            if (!message) return;
+            
+            addPreviewMessage('user', message);
+            previewInput.value = '';
+            
+            isWaitingPreview = true;
+            previewSendBtn.disabled = true;
+            addTypingPreview();
+            
+            fetch('/chat/api/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message: message})
+            })
+            .then(response => response.json())
+            .then(data => {
+                removeTypingPreview();
+                if (data.error) {
+                    addPreviewMessage('assistant', "Болото молчит... Попробуй еще раз.");
+                } else {
+                    addPreviewMessage('assistant', data.reply);
+                }
+            })
+            .catch(error => {
+                removeTypingPreview();
+                addPreviewMessage('assistant', "Что-то беспокоит болото... Попробуй позже.");
+            })
+            .finally(() => {
+                isWaitingPreview = false;
+                previewSendBtn.disabled = false;
+                previewInput.focus();
+            });
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
 </body>
 </html>
