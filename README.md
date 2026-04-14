@@ -1,4 +1,3 @@
-```markdown
 # Shrek
 
 ## Black & White AI Chat Experience
