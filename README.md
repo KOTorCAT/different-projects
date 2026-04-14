@@ -1,115 +1,153 @@
-# Shrek Luxury Edition — AI Chat with the Ogre
+```markdown
+# Shrek
 
-![Django](https://img.shields.io/badge/Django-6.0.4-092E20?style=for-the-badge&logo=django)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql)
-![GigaChat](https://img.shields.io/badge/GigaChat-API-005A9C?style=for-the-badge&logo=sberbank)
-![License](https://img.shields.io/badge/License-MIT-FF69B4?style=for-the-badge)
+## Black & White AI Chat Experience
 
 ---
 
-##  О проекте
+### О проекте
 
-**Shrek Luxury Edition** — это премиальный веб-интерфейс для общения с культовым персонажем DreamWorks. Проект сочетает элегантный черно-белый дизайн в стиле люксовых брендов с современными AI-технологиями.
+**Shrek Luxury Edition** — это веб-приложение на Django, позволяющее пользователям вести диалог с персонажем Шрек из вселенной DreamWorks. Проект сочетает минималистичный черно-белый дизайн.
 
-Пользователь может вести диалог со Шреком, который отвечает в своем уникальном характере — грубовато, с юмором и философскими нотками, используя метафоры про болото и луковицы.
-
-### Ключевые особенности
-
--  **AI-диалоги** — Интеграция с GigaChat API (бесплатно, 1 млн токенов/месяц)
--  **Два режима чата** — Мини-чат на главной странице и полноценная страница диалога
--  **Характер Шрека** — Глубокая настройка промпта для сохранения аутентичности персонажа
--  **История диалогов** — Сохранение контекста беседы в сессиях пользователя
--  **Асинхронные запросы** — AJAX-коммуникация без перезагрузки страницы
+Интерфейс выполнен в монохромной гамме с использованием элегантных шрифтов Montserrat и Cormorant Garamond. Диалоги с Шреком генерируются через GigaChat API от Сбера, что обеспечивает естественное общение с сохранением характера персонажа — грубоватого, но мудрого огра с болотным юмором и философскими метафорами.
 
 ---
 
-##  Технологический стек
+### Функциональные возможности
+
+- **Диалог с ИИ** — общение со Шреком на русском языке в его уникальной манере
+- **Два режима чата** — мини-чат на главной странице и полноэкранный режим для развернутых бесед
+- **Контекст диалога** — сохранение истории последних сообщений в сессии пользователя
+- **Асинхронная отправка** — сообщения отправляются без перезагрузки страницы через AJAX
+- **Адаптивный дизайн** — корректное отображение на всех типах устройств
+- **Индикатор набора текста** — визуальная обратная связь при генерации ответа
+- **Очистка истории** — возможность начать диалог заново
+
+---
+
+### Технологический стек
 
 | Компонент | Технология | Версия |
 |-----------|------------|--------|
 | Backend | Django | 6.0.4 |
 | База данных | PostgreSQL | 16 |
 | AI API | GigaChat (Сбер) | API v2 |
-| Frontend | HTML5 / CSS3 / JavaScript | — |
 | HTTP клиент | Requests | 2.32.3 |
 | Переменные окружения | python-dotenv | 1.0.1 |
+| Frontend | HTML5 / CSS3 / JavaScript | — |
 
 ---
 
-##  Установка и запуск
+### Требования к окружению
 
-### Требования
+- Python 3.12 или выше
+- PostgreSQL 16
+- Аккаунт на платформе GigaChat (developers.sber.ru)
+---
 
-- Python 3.12+
-- PostgreSQL 16+
-- Аккаунт в [GigaChat API](https://developers.sber.ru/) (бесплатно)
+### Установка и запуск
 
-### 1. Клонирование репозитория
+#### 1. Клонирование репозитория
+#### 2. Создание виртуального окружения
 
 ```bash
-git clone https://github.com/yourusername/shrek-luxury-edition.git
-cd shrek-luxury-edition
-2. Создание виртуального окружения
-bash
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate   # Windows
-3. Установка зависимостей
-bash
+source venv/bin/activate        # Linux / macOS
+# venv\Scripts\activate         # Windows
+```
+
+#### 3. Установка зависимостей
+
+```bash
 pip install -r requirements.txt
-4. Применение миграций
-bash
+```
+
+#### 4. Настройка базы данных PostgreSQL
+
+```bash
+sudo -u postgres psql
+```
+
+```sql
+CREATE DATABASE mydatabase;
+CREATE USER myuser WITH PASSWORD 'mypassword';
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO myuser;
+ALTER USER myuser WITH SUPERUSER;
+\q
+```
+
+#### 5. Настройка переменных окружения
+
+Создайте файл `.env` в корне проекта:
+
+```env
+GIGACHAT_API_KEY=your_api_key_here
+GIGACHAT_CLIENT_ID=your_client_id_here
+GIGACHAT_SCOPE=GIGACHAT_API_PERS
+```
+
+**Где взять ключи:**
+- Зарегистрируйтесь на [developers.sber.ru](https://developers.sber.ru/)
+- Создайте проект в разделе GigaChat
+- Скопируйте API-ключ и Client ID
+
+#### 6. Применение миграций
+
+```bash
 python manage.py makemigrations
 python manage.py migrate
-5. Сбор статических файлов
-bash
+```
+
+#### 7. Сбор статических файлов
+
+```bash
 python manage.py collectstatic
-6. Запуск сервера
-bash
+```
+
+#### 8. Запуск сервера разработки
+
+```bash
 python manage.py runserver
-Откройте в браузере: http://127.0.0.1:8000/
+```
 
- Структура проекта
-text
+Перейдите по адресу: `http://127.0.0.1:8000`
+
+---
+
+### Структура проекта
+
+```
 myproject/
-├── .env                    # Переменные окружения (API ключи)
-├── .gitignore              # Игнорируемые файлы
-├── manage.py               # Утилита управления Django
-├── requirements.txt        # Зависимости проекта
-├── myapp/                  # Основное приложение
-│   ├── views.py            # Контроллеры
-│   ├── gigachat_client.py  # Клиент GigaChat API
-│   ├── static/myapp/       # Статические файлы (CSS, JS)
-│   │   ├── css/style.css
-│   │   └── js/main.js
-│   └── templates/myapp/    # HTML шаблоны
-│       ├── home.html
-│       ├── about.html
-│       ├── chat.html
-│       └── item_detail.html
-└── myproject/              # Конфигурация проекта
-    ├── settings.py
-    └── urls.py
- Дизайн
-Проект выполнен в монохромной гамме с использованием:
+├── .env                           # Переменные окружения (не в Git)
+├── .gitignore                     # Игнорируемые файлы
+├── manage.py                      # Утилита управления Django
+├── requirements.txt               # Зависимости проекта
+├── myapp/
+│   ├── views.py                   # Контроллеры
+│   ├── gigachat_client.py         # Клиент GigaChat API
+│   ├── static/myapp/
+│   │   ├── css/style.css          # Основные стили
+│   │   └── js/main.js             # Клиентская логика
+│   └── templates/myapp/
+│       ├── home.html              # Главная страница
+│       ├── about.html             # О персонаже
+│       ├── chat.html              # Полноэкранный чат
+│       └── item_detail.html       # Детальные страницы
+└── myproject/
+    ├── settings.py                # Конфигурация Django
+    └── urls.py                    # Маршрутизация
+```
 
-Шрифты: Montserrat (минималистичный sans-serif) и Cormorant Garamond (элегантный serif)
+---
 
-Анимации: Плавное появление элементов при скролле
+### API эндпоинты
 
-Эффекты: Трансформация при наведении, индикатор печати Шрека
+| Метод | URL | Назначение |
+|-------|-----|-------------|
+| GET | `/` | Главная страница |
+| GET | `/about/` | Информация о Шреке |
+| GET | `/chat/` | Полноэкранный чат |
+| POST | `/chat/api/` | Отправка сообщения Шреку |
+| POST | `/chat/clear/` | Очистка истории диалога |
+| GET | `/item/<int:item_id>/` | Детальная страница |
 
-Адаптивность: Корректное отображение на всех устройствах
-
- API Интеграция
-GigaChat API
-Проект использует GigaChat API от Сбера для генерации ответов Шрека.
-
-Маршруты (URLs)
-URL	Назначение
-/	Главная страница с мини-чатом
-/about/	Информация о Шреке
-/chat/	Полноценная страница чата
-/chat/api/	API эндпоинт для сообщений (POST)
-/item/<int:item_id>/	Детальные страницы (луковица/болото/наследие)
-/admin/	Админ-панель Django
