@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHREK — Chapter</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+</head>
+<body>
+    <div class="nav">
+        <a href="/" class="logo">SHREK</a>
+        <div class="nav-links">
+            <a href="/">ACCUEIL</a>
+            <a href="/about/">L'HISTOIRE</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="item-detail">
+            <div class="item-label">CHAPTER</div>
+            <div class="item-title">
+                {% if item_id == 1 %}
+                The Layers of Being
+                {% elif item_id == 2 %}
+                The Sacred Swamp
+                {% else %}
+                The Eternal Legacy
+                {% endif %}
+            </div>
+            <div class="item-description">
+                {% if item_id == 1 %}
+                Like an onion, or perhaps a parfait — every being has depths worth discovering. 
+                Beyond the surface, beyond the green, there is a heart that beats with singular truth.
+                {% elif item_id == 2 %}
+                A place of solitude. A place of peace. A sanctuary misunderstood by many, 
+                cherished by one. The swamp holds secrets only the ogre knows.
+                {% else %}
+                Two decades later, the story continues to resonate. Not merely a tale, 
+                but a testament to authenticity in a world of fairy tales.
+                {% endif %}
+            </div>
+            <a href="/" class="button">Return</a>
+        </div>
+    </div>
+
+    <script src="{% static 'myapp/js/main.js' %}"></script>
+</body>
+</html>

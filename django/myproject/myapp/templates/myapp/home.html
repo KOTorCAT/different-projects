@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHREK — The Ogre | Luxury Edition</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/style.css' %}">
+</head>
+<body>
+    <div class="nav">
+        <a href="/" class="logo">SHREK</a>
+        <div class="nav-links">
+            <a href="/">ACCUEIL</a>
+            <a href="/about/">L'HISTOIRE</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1 class="fade-in">Shrek</h1>
+            <p class="fade-in delay-1">An Ogre's Tale — Beyond the Swamp</p>
+        </div>
+
+        <div class="quote-section">
+            <div class="quote fade-in">
+                What are you doing in my swamp?
+                <div class="quote-author">SHREK · 2001</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-content">
+                <div class="characters-grid">
+                    <div class="character-item">
+                        <div class="character-name">Shrek</div>
+                        <div class="character-desc">The Ogre · The Protector</div>
+                    </div>
+                    <div class="character-item">
+                        <div class="character-name">Donkey</div>
+                        <div class="character-desc">The Companion · The Loyal</div>
+                    </div>
+                    <div class="character-item">
+                        <div class="character-name">Fiona</div>
+                        <div class="character-desc">The Princess · The Warrior</div>
+                    </div>
+                    <div class="character-item">
+                        <div class="character-name">Dragon</div>
+                        <div class="character-desc">The Guardian · The Power</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-content">
+                <div class="facts-grid">
+                    <div class="fact">
+                        <div class="fact-number">I</div>
+                        <div class="fact-text">The first animated film to win the Academy Award for Best Animated Feature — 2002</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-number">II</div>
+                        <div class="fact-text">Mike Myers explored seven distinct accents before discovering Shrek's iconic voice</div>
+                    </div>
+                    <div class="fact">
+                        <div class="fact-number">III</div>
+                        <div class="fact-text">A cultural phenomenon that redefined animated storytelling for generations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-content">
+                <ul class="links-list">
+                    <li><a href="/item/1/">The Layers <span>→</span></a></li>
+                    <li><a href="/item/2/">The Swamp <span>→</span></a></li>
+                    <li><a href="/item/3/">The Legacy <span>→</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'myapp/js/main.js' %}"></script>
+</body>
+</html>
